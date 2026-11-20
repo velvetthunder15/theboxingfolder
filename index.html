@@ -59,15 +59,9 @@
           </figure>
 
           <div class="buy" data-hero-cta>
-            <div class="launch" data-launch hidden>
-              <span class="launch-label">Launch price</span>
-              <span class="launch-off" data-launch-off></span>
-              <span class="launch-ends">Price goes up <time data-launch-date></time></span>
-              <span class="countdown" data-countdown></span>
-            </div>
             <p class="big-price">
-              <s class="was" data-was hidden></s>
-              <span class="price" data-price><span class="cur">$</span>4.99</span>
+              <s class="was"><span class="sr-only">Regular price </span>$9.99</s>
+              <span class="price"><span class="sr-only">Launch price </span><span class="cur">$</span>4.99</span>
             </p>
             <p class="price-note"><span>One PDF · Instant download ·</span> <span>No subscription</span></p>
             <a class="btn btn-light btn-lg" href="#buy" data-checkout>GET THE GUIDE</a>
@@ -217,24 +211,17 @@
             <p class="eyebrow eyebrow-light">One-time payment</p>
             <h2 id="pricing-h">Get the folder</h2>
 
-            <div class="launch" data-launch hidden>
-              <span class="launch-label">Launch price</span>
-              <span class="launch-off" data-launch-off></span>
-              <span class="launch-ends">Price goes up <time data-launch-date></time></span>
-              <span class="countdown" data-countdown></span>
-            </div>
 
             <p class="big-price">
-              <s class="was" data-was hidden></s>
-              <span class="price" data-price><span class="cur">$</span>4.99</span>
+              <s class="was"><span class="sr-only">Regular price </span>$9.99</s>
+              <span class="price"><span class="sr-only">Launch price </span><span class="cur">$</span>4.99</span>
             </p>
 
 
             <a class="btn btn-light btn-lg btn-block" href="#buy" data-checkout>GET THE GUIDE</a>
-            <p class="pay-note" data-upi hidden><a href="#buy" data-checkout="upi">Paying from India? Pay with UPI</a></p>
             <p class="pay-note" data-preview hidden><a href="#" data-preview-link>Read a free Week 1 preview</a></p>
             <ul class="ticks ticks-light offer-list">
-              <li>One PDF, up to 15 pages</li>
+              <li>One PDF, 15 pages</li>
               <li>4 weeks of day-by-day sessions</li>
               <li>Printable habit tracker</li>
               <li>Links to free technique videos</li>
@@ -280,7 +267,7 @@
           </details>
           <details>
             <summary>How is it delivered?</summary>
-            <div class="answer"><p>As one PDF, ready to download straight after payment. <span class="ph">[DELIVERY_DETAILS: e.g. download link on the confirmation page and by email]</span> It reads well on a phone, and you can print the tracker.</p></div>
+            <div class="answer"><p>As one PDF. Straight after payment you get a download button on the confirmation page, plus an email receipt with a link to download it again whenever you need it. It reads well on a phone, and you can print the tracker.</p></div>
           </details>
           <details>
             <summary>How long is each session?</summary>
@@ -288,7 +275,7 @@
           </details>
           <details>
             <summary>Can I get a refund?</summary>
-            <div class="answer"><p><span class="ph">[REFUND_POLICY]</span></p></div>
+            <div class="answer"><p>Yes. If the folder isn't right for you, ask within 14 days of buying and you'll get a full refund, no questions asked. Details are in the <a href="refund.html">refund policy</a>.</p></div>
           </details>
         </div>
       </div>
@@ -311,7 +298,7 @@
       <div class="wrap center">
         <h2 id="final-h" class="final-h reveal">Your first session is <em>twenty minutes</em> away.</h2>
         <p class="final-sub">Clear a bit of floor, prop your phone where you can see it, and start week one.</p>
-        <a class="btn btn-lg" href="#buy" data-checkout>GET THE GUIDE <span class="btn-price" data-price-inline>$4.99</span></a>
+        <a class="btn btn-lg" href="#buy" data-checkout>GET THE GUIDE <span class="btn-price">$4.99</span></a>
       </div>
     </section>
   </main>
@@ -334,11 +321,10 @@
   <!-- Sticky phone CTA -->
   <div class="sticky-cta" data-sticky aria-hidden="true">
     <div class="sticky-inner">
-      <span class="sticky-price"><span class="price" data-price-inline>$4.99</span><span class="sticky-sub">One PDF · instant download</span></span>
+      <span class="sticky-price"><span class="sticky-prices"><s class="was"><span class="sr-only">Regular price </span>$9.99</s> <span class="price"><span class="sr-only">Launch price </span>$4.99</span></span><span class="sticky-sub">One PDF · instant download</span></span>
       <a class="btn btn-sm" href="#buy" data-checkout tabindex="-1">GET THE GUIDE</a>
     </div>
   </div>
 
-  <div class="toast" role="status" aria-live="polite" data-toast hidden></div>
 </body>
 </html>
