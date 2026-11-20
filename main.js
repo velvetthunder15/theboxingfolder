@@ -17,7 +17,6 @@ const CONFIG = {
   // Testimonials: one-line switch. Only entries with permission_confirmed: true are ever shown.
   SHOW_TESTIMONIALS: false,
 
-  CONTACT_EMAIL: "",      // PLACEHOLDER [CONTACT_EMAIL]
   CREATOR_HANDLE: "",     // optional footer line, e.g. "@yourhandle". Leave empty for none.
   WEEK1_PREVIEW_URL: "",  // optional link to a free Week 1 preview PDF
 };
@@ -128,7 +127,6 @@ const CONFIG = {
   if (isUrl(CONFIG.CHECKOUT_URL_INR)) document.querySelector("[data-upi]").hidden = false;
 
   /* ---------- Small config-driven bits ---------- */
-  if (CONFIG.CONTACT_EMAIL) $$("[data-contact]").forEach((a) => { a.href = "mailto:" + CONFIG.CONTACT_EMAIL; });
   if (CONFIG.CREATOR_HANDLE) {
     const c = document.querySelector("[data-creator]");
     c.textContent = " · " + CONFIG.CREATOR_HANDLE;
