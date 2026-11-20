@@ -10,6 +10,13 @@
   font-display: swap;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+@font-face {
+  font-family: "Inter";
+  src: url("data:font/woff2;base64,d09GMgABAAAAAATEABQAAAAACSwAAARZAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGyAcKj9IVkFSTT9NVkFSXgZgP1NUQVSBTicmADQvbBEICnSBCDCBTgE2AiQDCAsGAAQgBYVsByAMBxvbBwiO0x31wCRSqEHU49Tfe5IbJVxilTCEM+MQgGtOlAKgPxChiGLXLAAXeFESyAWUcSgv+j7PMePhODX/ooWHloVRXo1VYgOdTayb1kBlewdMB7HZ5gbuq4jEEUt6CEHLI0AEc8wjBUUVDRjoALYNADDWUsup9mI8vZaPGfhXAAFgCii+eo44CjDBUoJ6kAcBcHJCABAEBYi9KQgoFAKAgYOUbY36baOIsmMA42vAT0QIYwE2zmGLfR0BohBgzoPLKkABcnHHS2vR9UskhAMcyfpzwNmTTz3HUXXB9Dg0QKEDAAoAoK5V1vOgeZd7ybAH/58ExnvqVEAA9C7Hy4ApCkEw0IApIoHVlD8wtlkyYMMYsUQQl9XrESeKaRZaK0uRJn18NtvPyQigJJMYQBCQeAYyWgJP8ifKakDLVSgJgbqX+JPlV6GlqJb6VEpL00x3urb3pFKHyQVAAAFACGv2ohD1XOS+mWdPj1g6tPBEcnLCpU6cAAVowBQaAkyhYwIdHQHz2XZo/aAE+SaJwhThGB39rxmAhEDbCyAi8cAAJAF4EiQRZDVIEkgIJBnkV0gKqBaQVFD3gqSBZoKkg7YXEMS2iQVAAaADGrAAZAAAHQDQ9Jn6loa45k3rm6KPvPGG7Ho9Iqo58shrr7Hz1VcjIlxs6b7m3FeDSdfemHjt/MXBuAPaNmPoeFb5eMuec0+9dHrS1Z/e/Knle3rX+v5H3rJudnzeGBVd+HLStV85Ei8HAAEEgFkUALMAtJUiTn3xINQUTjj/LVPP//n5lg8+ueONMNM0v/jk5+c+ueHIoUOHgEN2XbS6nqRdcsmR63PtNnvtTqe9aVfsdx7Pdzg/Q/93QXrjFpndxuQ1qYmFHV38uyvbNuyd3lgzy/x+yarob28JDccb0bMSx6ysWtmLv4C7+IcfuYzLHM013/9O8Dg+ufHGT7hwt6Z9/9SpebbXnXS3ETHhh4+//+j6y9UueeK+vQigk3d/f/Bgd2zOb4ZmAPDx+gOhOOx5dvx/70fcabwHaCgABP6TPdJExH/bmmGuqRxOKdEbySKAYlAEbRwIAAAAOgJMjUJD9HAgBBmECEJQxHA2NBJcCZ1Z3oSDND+zJzAry8VEiJI8xGNIFRKYkiYkEiHrkEQMZyOZKLGQQlx2IhVDQkhjUs5EOhFyNTKYkVuRiSHPwkmUvGrIvXfuD8nnF7DJKJdhIyymJAkSpTE1GDHIVMrHMmiUqcYov3UG9eu5co2zjPAbNca03AiLJWBMlnjxhrlYRozrs1Y/P6/4ke01Jp6rpH5F4fR1Bg0b59FrVIq1EiRIlK1OvUr1SZ3VbM3WAXlMU5N0HuPi52MWqF/sXiPNyaZI1y9BX7mF/maDHSp743fxKbQxOqpXBdElG6k0aIDLOK96g7xc8vh5DKjuUB2grF20n1u1AItLv14epnoumw1KlCKkUpYSmupa/7NePhoA/H+po5jEO8Xed6N+DAA=") format("woff2");
+  font-weight: 400 800;
+  font-display: swap;
+  unicode-range: U+20B9;
+}
 /* Metric-matched fallback so text does not jump when Inter arrives. */
 @font-face {
   font-family: "Inter Fallback";
@@ -138,6 +145,7 @@ em { font-style: normal; }
 .btn:focus-visible { outline-offset: 4px; border-radius: var(--r-pill); }
 .btn-sm { min-height: 48px; padding: 0 var(--s5); font-size: var(--fs-xs); }
 .btn-lg { min-height: 60px; padding: 0 var(--s7); font-size: var(--fs-base); }
+@media (max-width: 379px) { .btn-lg { padding: 0 var(--s5); letter-spacing: 0.06em; } .btn-price { padding-left: var(--s2); } .header-row { gap: var(--s3); } .site-header .wordmark { font-size: 0.8125rem; } .site-header .btn-sm { padding: 0 var(--s4); letter-spacing: 0.05em; } }
 .btn-light { background: var(--paper); color: var(--charcoal); box-shadow: 0 10px 30px -10px rgba(22, 17, 16, 0.6); }
 .btn-block { width: 100%; }
 .btn-price { padding-left: var(--s3); border-left: 1.5px solid rgba(22, 17, 16, 0.35); font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
@@ -190,13 +198,11 @@ em { font-style: normal; }
 .hero-title { display: flex; flex-direction: column; align-items: center; gap: var(--s3); }
 
 .title-pill {
-  /* Smoked-glass capsule: hairline light edge, soft drop shadow, a small ember dot. */
+  /* Smoked-glass capsule: hairline light edge, soft drop shadow. */
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
+  display: inline-block;
   max-width: 100%;
-  padding: 0.42em 0.95em 0.46em 0.82em;
+  padding: 0.42em 0.95em 0.46em;
   font-size: var(--fs-title);
   color: var(--paper);
   border-radius: var(--r-pill);
@@ -216,14 +222,6 @@ em { font-style: normal; }
     backdrop-filter: blur(12px) saturate(1.2);
   }
 }
-.title-pill::before {
-  content: "";
-  flex: none;
-  width: 0.26em; height: 0.26em;
-  border-radius: 50%;
-  background: var(--ember);
-  box-shadow: 0 0 0 0.09em rgba(255, 90, 31, 0.22), 0 0 0.5em rgba(255, 90, 31, 0.55);
-}
 .title-pill h1 {
   font-size: 1em;
   line-height: 1.05;
@@ -233,10 +231,8 @@ em { font-style: normal; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .title-pill { animation: float 6s ease-in-out infinite; }
-  .title-pill::before { animation: dot 6s ease-in-out infinite; }
 }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@keyframes dot { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
 
 .hero-grid {
   width: 100%;
@@ -255,7 +251,7 @@ em { font-style: normal; }
   grid-area: book;
   width: min(78vw, 400px);
   /* Size from the screen height so the price and button always land on the first screen. */
-  width: clamp(120px, calc((100svh - 456px) * 0.7773), min(78vw, 400px));
+  width: clamp(96px, calc((100svh - 456px) * 0.7773), min(78vw, 400px));
   aspect-ratio: 1110 / 1428;
   margin: var(--s2) 0 -8%;
 }
@@ -280,6 +276,23 @@ em { font-style: normal; }
   color: var(--paper);
   text-shadow: 0 4px 30px rgba(22, 17, 16, 0.35);
 }
+/* Show one currency: dollars by default, rupees when the visitor is in India. */
+html:not(.inr) [data-cur="inr"], html.inr [data-cur="usd"] { display: none !important; }
+.big-price .was-row { flex-basis: 100%; display: flex; align-items: center; justify-content: center; gap: 0.32em; margin-bottom: 0.06em; font-size: 0.26em; line-height: 1.2; }
+.big-price .was-row .was { flex-basis: auto; margin: 0; font-size: 1em; }
+.off-badge {
+  display: inline-flex; align-items: center;
+  padding: 0.2em 0.6em 0.22em;
+  border-radius: var(--r-pill);
+  background: var(--amber); color: var(--charcoal);
+  font-size: 0.62em; font-weight: 800; line-height: 1.2; letter-spacing: 0.06em; text-transform: uppercase;
+  font-variant-numeric: tabular-nums; white-space: nowrap; text-shadow: none;
+  box-shadow: 0 6px 16px -6px rgba(22, 17, 16, 0.55);
+  transform: rotate(-3deg);
+}
+.off-badge-sm { font-size: 0.6875rem; padding: 1px 7px; margin-right: 4px; transform: none; box-shadow: none; vertical-align: 1px; }
+.sticky-price { min-width: 0; }
+.sticky-inner .btn { flex: none; }
 .big-price .cur { font-size: 0.56em; vertical-align: 0.62em; margin-right: 0.04em; letter-spacing: 0; }
 .big-price { flex-wrap: wrap; }
 .price-note span { display: inline-block; }
@@ -552,7 +565,7 @@ em { font-style: normal; }
   .hero-book { width: 100%; max-width: 440px; margin: 0; }
   .buy { justify-self: start; align-items: flex-start; text-align: left; }
   .buy .big-price { justify-content: flex-start; }
-  .buy .big-price .was { text-align: left; }
+  .buy .big-price .was-row { justify-content: flex-start; }
   .big-price { --fs-price: clamp(6rem, 8.4vw, 9.5rem); }
 
   .items { display: flex; flex-wrap: wrap; justify-content: center; column-gap: var(--s7); }
