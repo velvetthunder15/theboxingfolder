@@ -3,7 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <script>(function(){try{var d=document.documentElement,m=location.search.match(/[?&]currency=(inr|usd)\b/i),z=Intl.DateTimeFormat().resolvedOptions().timeZone||"";if(m?m[1].toLowerCase()==="inr":(z==="Asia/Kolkata"||z==="Asia/Calcutta"))d.classList.add("inr")}catch(e){}})();</script>
+  <script>
+  /* Show rupees to visitors connecting from India, dollars to everyone else.
+     The country comes from our host (same IP-based signal Polar's checkout uses, so VPNs count).
+     Prices stay hidden for at most 2 s while it answers; if it can't, the device time zone decides.
+     ?currency=inr or ?currency=usd forces either version. */
+  (function () {
+    var d = document.documentElement, done = false;
+    function set(c) { if (done) return; done = true; if (c === "inr") d.classList.add("inr"); else d.classList.remove("inr"); d.classList.remove("cur-pending"); }
+    var m = location.search.match(/[?&]currency=(inr|usd)\b/i);
+    if (m) { set(m[1].toLowerCase()); return; }
+    var z = ""; try { z = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+    var guess = (z === "Asia/Kolkata" || z === "Asia/Calcutta") ? "inr" : "usd";
+    if (!window.fetch) { set(guess); return; }
+    d.classList.add("cur-pending");
+    setTimeout(function () { set(guess); }, 2000);
+    fetch("/cdn-cgi/trace", { cache: "no-store", credentials: "omit" })
+      .then(function (r) { if (!r.ok) throw 0; return r.text(); })
+      .then(function (t) { var l = (t.match(/^loc=([A-Z]{2})\s*$/m) || [])[1]; set(l ? (l === "IN" ? "inr" : "usd") : guess); })
+      .catch(function () { set(guess); });
+  })();
+  </script>
   <title>The Boxing Folder: a 4-week home shadowboxing program (PDF)</title>
   <meta name="description" content="A 4-week, day-by-day shadowboxing program for home. No equipment, no gym, 20–30 minutes a session. One PDF, $4.99, instant download.">
   <meta name="theme-color" content="#161110">

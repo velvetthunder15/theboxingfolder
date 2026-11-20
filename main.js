@@ -4,7 +4,8 @@ const CONFIG = {
   // Polar picks the currency from the buyer's location. India: ₹999 minus the ₹800 launch
   // discount = ₹199. Every other country: $9.99 minus the $5 launch discount = $4.99.
   // The page shows the matching prices: index.html holds both ($9.99 / $4.99 and ₹999 / ₹199),
-  // and a small script in its <head> shows rupees when the visitor's time zone is India.
+  // and a small script in its <head> shows rupees when the visitor connects from India
+  // (country from the host, like Polar's checkout; device time zone only as a fallback).
   CHECKOUT_URL: "https://buy.polar.sh/polar_cl_VOzCwTrrZxAzTR7jQcYv566bgtxMAzuw8viXe2C8SlW",
 
   // Testimonials: one-line switch. Only entries with permission_confirmed: true are ever shown.

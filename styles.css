@@ -278,6 +278,7 @@ em { font-style: normal; }
 }
 /* Show one currency: dollars by default, rupees when the visitor is in India. */
 html:not(.inr) [data-cur="inr"], html.inr [data-cur="usd"] { display: none !important; }
+html.cur-pending [data-cur] { visibility: hidden; }
 .big-price .was-row { flex-basis: 100%; display: flex; align-items: center; justify-content: center; gap: 0.32em; margin-bottom: 0.06em; font-size: 0.26em; line-height: 1.2; }
 .big-price .was-row .was { flex-basis: auto; margin: 0; font-size: 1em; }
 .off-badge {
