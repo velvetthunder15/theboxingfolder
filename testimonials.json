@@ -1,0 +1,10 @@
+{
+  "_how_to_use": "Add one object per real buyer to the testimonials list. Use their exact words, and set permission_confirmed to true only after they have said yes in writing. Entries with false are never shown. Then set SHOW_TESTIMONIALS to true in main.js. The _example entry below is not in the list and never renders.",
+  "_example": {
+    "quote": "Their exact words, unedited.",
+    "name": "First name and last initial",
+    "detail": "Short role line, e.g. Started in week 2, working out in a small flat",
+    "permission_confirmed": false
+  },
+  "testimonials": []
+}
