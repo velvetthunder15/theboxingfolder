@@ -536,7 +536,6 @@ html.cur-pending [data-cur] { visibility: hidden; }
   .wordmark { font-size: var(--fs-base); }
   .section, .pricing, .manifesto, .band-ember { padding-block: var(--s10); }
   .items { grid-template-columns: 1fr 1fr; column-gap: var(--s7); }
-  .items .item:last-child { grid-column: 1 / -1; }
   .fit { grid-template-columns: 1fr 1fr; }
   .fit-col { padding: var(--s5) var(--s7); }
   .fit-col + .fit-col { border-top: 0; border-left: 1px solid var(--rule); }
