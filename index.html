@@ -43,7 +43,8 @@
   <meta name="twitter:description" content="4 weeks. No equipment. No gym. A day-by-day shadowboxing plan for home.">
   <meta name="twitter:image" content="https://theboxingfolder.onrender.com/assets/img/og-image.jpg">
 
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preload" href="assets/img/logo-mark.webp" as="image" type="image/webp">
   <link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/texture-tall.webp" as="image" type="image/webp" media="(max-width: 1023px)">
   <link rel="preload" href="assets/img/texture-wide.webp" as="image" type="image/webp" media="(min-width: 1024px)">
@@ -53,10 +54,10 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header is-over" data-header>
+  <header class="site-header is-over" data-header aria-hidden="true">
     <div class="wrap header-row">
-      <a class="wordmark" href="#top" data-header-mark>The Boxing Folder</a>
-      <a class="btn btn-sm" href="#buy" data-checkout>GET THE GUIDE</a>
+      <a class="wordmark" href="#top" data-header-mark tabindex="-1"><img class="brand-logo" src="assets/img/logo-mark.webp" width="348" height="298" alt="" decoding="async"><span>The Boxing Folder</span></a>
+      <a class="btn btn-sm" href="#buy" data-checkout tabindex="-1">GET THE GUIDE</a>
     </div>
   </header>
 
@@ -65,7 +66,7 @@
     <section class="hero texture" id="top" aria-labelledby="title">
       <div class="wrap hero-inner">
         <div class="hero-title">
-          <div class="title-pill"><h1 id="title">The Boxing Folder</h1></div>
+          <div class="title-pill"><img class="brand-logo" src="assets/img/logo-mark.webp" width="348" height="298" alt="" fetchpriority="high" decoding="async"><h1 id="title">The Boxing Folder</h1></div>
         </div>
 
         <div class="hero-grid">
@@ -340,7 +341,7 @@
         </nav>
         <p class="footer-note">General fitness information, not medical advice. Results are not guaranteed.<br>© <span data-year>2026</span> The Boxing Folder<span data-creator hidden></span></p>
       </div>
-      <p class="giant" aria-hidden="true">The Boxing Folder</p>
+      <div class="giant" aria-hidden="true"><img class="giant-logo" src="assets/img/logo-mark.webp" width="348" height="298" alt="" loading="lazy" decoding="async"><span>The Boxing Folder</span></div>
     </div>
   </footer>
 

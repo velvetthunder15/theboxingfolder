@@ -78,11 +78,18 @@ const CONFIG = {
   }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
   $$(".reveal").forEach((el) => io.observe(el));
 
-  /* ---------- Header: transparent over the title, solid once the title pill scrolls away ---------- */
+  /* ---------- Header: hidden at top over hero, shown with logo + CTA on scroll ---------- */
   const header = document.querySelector("[data-header]");
+  const headerLinks = $$("a", header);
+  const setHeaderOver = (over) => {
+    header.classList.toggle("is-over", over);
+    header.setAttribute("aria-hidden", over ? "true" : "false");
+    headerLinks.forEach((a) => { a.tabIndex = over ? -1 : 0; });
+  };
+  setHeaderOver(true);
   new IntersectionObserver(([e]) => {
-    header.classList.toggle("is-over", e.isIntersecting);
-  }, { rootMargin: "-64px 0px 0px 0px" }).observe(document.querySelector(".hero-title"));
+    setHeaderOver(e.isIntersecting);
+  }, { rootMargin: "0px 0px 0px 0px" }).observe(document.querySelector(".hero-title"));
 
   /* ---------- Sticky phone CTA ---------- */
   // Shown once the hero price has scrolled away; hidden while the pricing block, final CTA or footer is on screen.
