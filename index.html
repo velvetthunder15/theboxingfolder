@@ -5,23 +5,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>
   /* Show rupees to visitors connecting from India, dollars to everyone else.
-     The country comes from our host (same IP-based signal Polar's checkout uses, so VPNs count).
-     Prices stay hidden for at most 2 s while it answers; if it can't, the device time zone decides.
+     The country comes from IP (same signal Polar's checkout uses, so VPNs count).
+     Re-checks on pageshow/visibility/online for in-app browsers (e.g. Instagram) and VPN switches.
      ?currency=inr or ?currency=usd forces either version. */
   (function () {
-    var d = document.documentElement, done = false;
-    function set(c) { if (done) return; done = true; if (c === "inr") d.classList.add("inr"); else d.classList.remove("inr"); d.classList.remove("cur-pending"); }
+    var d = document.documentElement;
+    function apply(c) {
+      if (c === "inr") d.classList.add("inr");
+      else d.classList.remove("inr");
+      d.classList.remove("cur-pending");
+    }
     var m = location.search.match(/[?&]currency=(inr|usd)\b/i);
-    if (m) { set(m[1].toLowerCase()); return; }
+    if (m) { apply(m[1].toLowerCase()); return; }
     var z = ""; try { z = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
     var guess = (z === "Asia/Kolkata" || z === "Asia/Calcutta") ? "inr" : "usd";
-    if (!window.fetch) { set(guess); return; }
-    d.classList.add("cur-pending");
-    setTimeout(function () { set(guess); }, 2000);
-    fetch("/cdn-cgi/trace", { cache: "no-store", credentials: "omit" })
-      .then(function (r) { if (!r.ok) throw 0; return r.text(); })
-      .then(function (t) { var l = (t.match(/^loc=([A-Z]{2})\s*$/m) || [])[1]; set(l ? (l === "IN" ? "inr" : "usd") : guess); })
-      .catch(function () { set(guess); });
+    if (!window.fetch) { apply(guess); return; }
+
+    var run = 0, lastAt = 0, hiddenAtStart = false;
+    function tag() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+    function norm(cc) {
+      cc = String(cc || "").trim().toUpperCase();
+      return /^[A-Z0-9]{2}$/.test(cc) && cc !== "XX" && cc !== "ZZ" ? cc : "";
+    }
+    function grab(url, parse, ms) {
+      var ac = typeof AbortController === "function" ? new AbortController() : null;
+      var t = ac ? setTimeout(function () { ac.abort(); }, ms) : 0;
+      return fetch(url, { cache: "no-store", credentials: "omit", signal: ac ? ac.signal : undefined })
+        .then(function (r) { if (!r.ok) throw 0; return parse(r); })
+        .then(function (cc) {
+          if (t) clearTimeout(t);
+          cc = norm(cc);
+          if (!cc) throw 0;
+          return cc;
+        }, function (e) {
+          if (t) clearTimeout(t);
+          throw e;
+        });
+    }
+    function parseTrace(r) { return r.text().then(function (t) { return (t.match(/^loc=([A-Z0-9]{2})\b/im) || [])[1]; }); }
+    function parseJson(r) { return r.json().then(function (j) { return j && j.country; }); }
+
+    function check(initial) {
+      var id = ++run, settled = false, backupsFired = false;
+      lastAt = Date.now();
+      hiddenAtStart = document.visibilityState === "hidden" || document.visibilityState === "prerender";
+      if (initial) d.classList.add("cur-pending");
+
+      var revealTimer = initial ? setTimeout(function () {
+        if (!settled && id === run && d.classList.contains("cur-pending")) apply(guess);
+      }, 1200) : 0;
+      var retryTimer = 0;
+
+      function accept(cc) {
+        if (settled || id !== run) return;
+        settled = true;
+        if (revealTimer) clearTimeout(revealTimer);
+        if (backupTimer) clearTimeout(backupTimer);
+        if (retryTimer) clearTimeout(retryTimer);
+        apply(cc === "IN" ? "inr" : "usd");
+      }
+
+      function fireBackups() {
+        if (backupsFired || settled || id !== run) return;
+        backupsFired = true;
+        var q = "?_=" + tag();
+        grab("/cdn-cgi/trace?_=" + tag(), parseTrace, 4500).then(accept, function () {});
+        grab("https://api.country.is/" + q, parseJson, 4500).then(accept, function () {});
+        grab("https://get.geojs.io/v1/ip/country.json" + q, parseJson, 4500).then(accept, function () {});
+        retryTimer = setTimeout(function () {
+          if (settled || id !== run) return;
+          var q2 = "?_=" + tag();
+          grab("/cdn-cgi/trace" + q2, parseTrace, 4500).then(accept, function () {});
+          grab("https://api.country.is/" + q2, parseJson, 4500).then(accept, function () {});
+        }, 1500);
+      }
+
+      var backupTimer = setTimeout(fireBackups, 450);
+
+      grab("/cdn-cgi/trace?_=" + tag(), parseTrace, 4500)
+        .then(accept, fireBackups);
+    }
+
+    check(true);
+
+    window.addEventListener("pageshow", function (e) {
+      if (e.persisted || Date.now() - lastAt > 1200) check(false);
+    });
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && (hiddenAtStart || Date.now() - lastAt > 1200)) check(false);
+    });
+    window.addEventListener("focus", function () {
+      if (Date.now() - lastAt > 2000) check(false);
+    });
+    window.addEventListener("online", function () {
+      check(false);
+      setTimeout(function () { check(false); }, 800);
+    });
   })();
   </script>
   <title>The Boxing Folder: a 4-week home shadowboxing program (PDF)</title>
